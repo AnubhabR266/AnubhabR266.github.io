@@ -1,0 +1,16 @@
+[
+    {
+        "title": "Implementing Light/Dark Mode Switcher",
+        "content": "In this blog post, I will explain the process of implementing a light/dark mode switcher for my portfolio website. The light mode is the default theme, and users can switch to dark mode by clicking a toggle button.\n\n1. **Adding the Toggle Button**: First, I added a button to the navigation bar in each HTML file. The button text changes based on the current theme.\n\n2. **CSS for Light and Dark Modes**: I defined the styles for both light and dark modes using CSS classes. The default styles are for light mode, and the `.dark-mode` class changes the background and text colors for dark mode.\n\n3. **JavaScript for Theme Switching**: I added a script to handle the theme switching. The script toggles the `.dark-mode` class on the `body` element and updates the button text when the button is clicked.\n\nHere is the JavaScript code:\n\n <codeblock> \ndocument.addEventListener('DOMContentLoaded', function() {\n    const themeToggle = document.getElementById('theme-toggle');\n\n    themeToggle.addEventListener('click', () => {\n        document.body.classList.toggle('dark-mode');\n        if (document.body.classList.contains('dark-mode')) {\n            themeToggle.textContent = 'Switch to Light Mode';\n        } else {\n            themeToggle.textContent = 'Switch to Dark Mode';\n        }\n    });\n});\n</codeblock>"
+   
+    },
+    
+    {
+        "title": "Adding a Dynamic Blog Section",
+        "content": "In this blog post, I will explain how I added a dynamic blog section to my portfolio website. The blog posts are stored in a JSON file and loaded dynamically using JavaScript.\n\n1. **Creating the Blog Page**: I created a new HTML file (`blog.html`) for the blog page. The page contains a section where the blog posts will be displayed.\n\n2. **Creating the JSON File**: I created a `posts.json` file to store the blog posts. Each post has a `title` and `content` property.\n\n3. **JavaScript for Loading Blog Posts**: I added a script to fetch and display the blog posts from the JSON file. The script iterates through the posts and creates elements to display the title and content of each post.Here is the JavaScript code for fetching and displaying the blog posts:\n\n <codeblock>document.addEventListener(\"DOMContentLoaded\", function () {\n const blogList = document.getElementById(\"blog-list\");\n\n fetch(\"posts.json\")\n .then((response) => response.json())\n .then((posts) => {\n console.log(\"Fetched posts:\", posts);\n posts.forEach((post) => {\n const postElement = document.createElement(\"div\");\n postElement.classList.add(\"blog-post\");\n\n const postTitle = document.createElement(\"h3\");\n postTitle.textContent = post.title;\n postElement.appendChild(postTitle);\n\n const postContent = document.createElement(\"p\");\n //markdown function to help display the html\n postContent.innerHTML = markdownToHTML(post.content); \n postElement.appendChild(postContent);\n\n blogList.appendChild(postElement);\n });\n })\n .catch((error) => console.error(\"Error loading blog posts:\", error));\n});</codeblock>"
+      }
+      
+      
+        
+    
+]
